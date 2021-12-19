@@ -1,4 +1,6 @@
-import React from "react";
+import React from "react"; //React17まではJSXを使う時にお作法でつけたが、それ以降は任意。
+import ReactDom from "react-dom"; // html にコンポーネントを反映するもの
+//import App from "./App"; // src配下の Appファイルから関数を読み込む。
 
 // React では関数をコンポーネントに反映できる。アロー関数をかく。
 const App = () => {
@@ -10,11 +12,13 @@ const App = () => {
     // <div>で囲むとエラー回避のためだけにHTMLにDivタグがレンダリングされるので、
     //  React.Fragmentタグで囲むとこのFragmentタグはレンダリングされない。
     //  <></>で囲んでもReact.Fragmentタグと同様のタグとして扱われる。
-    <React.Fragment>
+    <>
       <h1>こんにちは</h1>
       <p>お元気ですか？</p>
       <button onClick={onClickButton}></button>
-    </React.Fragment>
+    </>
   );
 };
-export default App; // Appファイル（コンポーネント）をほかのJSファイルで使えるようにする。
+
+// html に反映するために、render関数を使う。
+ReactDom.render(<App />, document.getElementById("root"));
